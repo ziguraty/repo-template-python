@@ -20,9 +20,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Configure git
+        uses: qoomon/actions--setup-git@v1
+
       - name: Add upstream remote
         run: |
-          git remote add upstream git@github.com:ziguraty/repo-template.git || true
+          git remote add upstream https://github.com/ziguraty/repo-template.git || true
           git fetch upstream
 
       - name: Check for upstream changes
