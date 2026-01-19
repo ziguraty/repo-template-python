@@ -9,6 +9,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 jobs:
   sync_template_from_upstream:
@@ -91,9 +92,8 @@ jobs:
 
             📦 Source: `upstream/main`
       - name: Workflow failure notification
-        uses: JasonEtco/create-an-issue@v2
+        uses: peter-evans/create-issue-from-file@v6
         if: failure()
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          filename: .github/sync_template_failure.md
+          title: An example issue created from a file
+          content-filepath: .github/sync_template_failure.md
